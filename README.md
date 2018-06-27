@@ -1,0 +1,1 @@
+# 用于gitlab CI的docker基础镜像
