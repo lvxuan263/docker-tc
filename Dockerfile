@@ -14,10 +14,7 @@ RUN echo "===> Installing sudo to emulate normal OS behavior..." && \
         build-base && \
     \    
     echo "===> Adding gyp build runtimes..."  && \
-    apk add --no-cache --virtual .fetch-deps \
-        make \
-        g++ && \
-    \  
+    
     echo "===> Installing Ansible..."  && \
     pip install --no-cache-dir --upgrade pip cffi ansible && \
     \
@@ -26,7 +23,7 @@ RUN echo "===> Installing sudo to emulate normal OS behavior..." && \
         sshpass \
         openssh-client \
         rsync && \
-    pip install --no-cache-dir --upgrade pip cffi ansible \
+    pip install --no-cache-dir --upgrade pip cffi ansible && \
     \
     apk del .fetch-deps && \
     \
