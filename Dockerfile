@@ -1,6 +1,5 @@
 FROM docker:stable
 
-#RUN apk --update add yarn
 RUN echo "===> Installing sudo to emulate normal OS behavior..." && \
     apk add --no-cache --virtual .fetch-deps yarn; \
     \
