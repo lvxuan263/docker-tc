@@ -1,5 +1,25 @@
 FROM docker:stable
 
-RUN apk add --no-cache nodejs-npm python && \
+RUN apk add --no-cache \ 
+        nodejs-npm \
+        python \
+        py2-pip \
+        openssl \
+        sshpass \
+        openssh-client \
+        rsync && \
+    \
     npm install yarn -g && \
-    yarn config set registry https://registry.npm.taobao.org
+    yarn config set registry https://registry.npm.taobao.org && \
+    \
+    apk add --no-cache --virtual .dev-depends \
+        python-dev \
+        libffi-dev \
+        openssl-dev \
+        build-base && \
+    \
+    pip install --upgrade pip && \
+    pip install --upgrade cffi ansible && \
+    apk del --no-cache .dev-depends && \
+    mkdir -p /etc/ansible && \
+    echo 'localhost' > /etc/ansible/hostscd 
